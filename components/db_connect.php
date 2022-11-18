@@ -9,6 +9,6 @@ $dbname = "BE17_CR5_animal_adoption_Ericka";
 $connect = new  mysqli($localhost, $username, $password, $dbname);
 
 // check connection
-if ($connect->connect_error) {
-    die("Connection failed: " . $connect->connect_error);
-} else { echo"correct";}
+// if ($connect->connect_error) {
+//     die("Connection failed: " . $connect->connect_error);
+// } else { echo"correct";}
