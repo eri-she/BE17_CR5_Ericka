@@ -23,7 +23,7 @@ mysqli_close($connect);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require_once '../components/boot.php' ?>
-    <title>PHP CRUD | Add Product</title>
+    <title>Add Dog</title>
     <style>
         fieldset {
             margin: auto;
@@ -86,7 +86,7 @@ mysqli_close($connect);
                
                 <tr>
                     <td><button class='btn btn-success' type="submit">Add</button></td>
-                    <td><a href="../dashboard.php"><button class='btn btn-warning' type="button">Dashboard</button></a></td>
+                    <td><a href="dogs.php"><button class='btn btn-warning' type="button">Dogs</button></a></td>
                 </tr>
             </table>
         </form>

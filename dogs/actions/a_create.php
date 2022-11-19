@@ -64,7 +64,7 @@ if ($_POST) {
         <div class="alert alert-<?= $class; ?>" role="alert">
              <p><?php echo ($message) ?? ''; ?></p>
             <p><?php echo ($uploadError) ?? ''; ?></p>
-            <a href='../../dashboard.php'><button class="btn btn-primary" type='button'>Dashboard</button></a>
+            <a href='../dogs.php'><button class="btn btn-primary" type='button'>Dogs</button></a>
         </div>
     </div>
 </body>
