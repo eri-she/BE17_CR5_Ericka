@@ -93,5 +93,6 @@ if (mysqli_num_rows($result) > 0) {
                     </tbody>
                 </table>
 </div>
+<a href="dogs/dogs.php" class="m-4">Dog´s Dashboard >></a>
 </body>
 </html>
