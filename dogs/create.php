@@ -79,10 +79,10 @@ mysqli_close($connect);
                     <td><textarea class='form-control' type="text" name="description" placeholder="Description" step="any" ></textarea></td>
                 </tr>
 
-                <tr>
+                <!-- <tr>
                     <th>Picture</th>
                     <td><input class='form-control' type="file" name="picture" /></td>
-                </tr>
+                </tr> -->
                
                 <tr>
                     <td><button class='btn btn-success' type="submit">Add</button></td>

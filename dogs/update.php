@@ -96,10 +96,7 @@ $user = mysqli_fetch_array($res, MYSQLI_ASSOC);
                     <td><input class='form-control' type="text" name="description" value="<?=$description?>"   step="any" ></input></td>
                 </tr>
 
-                <tr>
-                    <th>Picture</th>
-                    <td><input class='form-control' type="file" name="picture" /></td>
-                </tr>
+               
                
                 <input type="hidden" name="id" value="<?= $id ?>" />
                 
