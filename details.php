@@ -13,33 +13,25 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
     exit;
 }
 
-// user logged in
-$res = mysqli_query($connect, "SELECT * FROM users WHERE id=" . $_SESSION['user']);
-$user = mysqli_fetch_array($res, MYSQLI_ASSOC);
-// we look for all the users that are not adm.
-
-$sql = "SELECT * FROM animals";
-$result = mysqli_query($connect, $sql);
-
-$tbody = '';
-if (mysqli_num_rows($result) > 0) {
-    while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-        $tbody .= "<div class='col'><div class='card' ;>
-  <img src='pictures/" . $row['picture'] . "' class='card-img-top img-fluid'  >
-  <div class='card-body'>
-    <h5 class='card-title'>" . $row['name'] . "</h5>
-    <p class='card-text'>Breed: " . $row['breed'] . "</p>
-     <p class='card-text'>Breed: " . $row['age'] . " years.</p>
-    <a href='details.php?id=" . $row['id'] . "' class='btn btn-primary'>More Details</a>
-  </div>
-</div>
-        </div>";
+if($_GET["id"]){
+    $id = $_GET["id"];
+    $sql = "SELECT * FROM animals WHERE id = {$id}";
+    $result = mysqli_query($connect, $sql);
+    if (mysqli_num_rows($result)==1) {
+        $data = mysqli_fetch_assoc($result);
+        // $data[this is the name of your column in your database]
+        $name = $data['name'];
+        $breed = $data['breed'];
+        $age = $data['age'];
+        $description=$data["description"];
+       
+    } else {
+        header("location: actions/error.php");
     }
-} else {
-    $tbody = "<tr><td colspan='5'><center>No Data Available </center></td></tr>";
 }
 
-mysqli_close($connect);
+$res = mysqli_query($connect, "SELECT * FROM users WHERE id=" . $_SESSION['user']);
+$user = mysqli_fetch_array($res, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +41,12 @@ mysqli_close($connect);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
       <?php require_once "components/boot.php"?>
+      <style>
+        .tarj{
+            display: block;
+            margin:0 auto;
+        }
+      </style>
 </head>
 <body>
      <nav class="navbar navbar-expand-lg bg-light">
@@ -76,11 +74,18 @@ mysqli_close($connect);
 <img class="rounded-circle"src="pictures/<?=$user["picture"]?>" width="25px"alt=""> Welcome <?=$user["first_name"]?>! 
  
 </div>
-<div class="container mt-5">
-    <div class=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-<?= $tbody?>
-    </div>
+<h1 class="text-center text-primary mt-4">Find out more about <?= $breed?></h1>
+    <div class="container mt-5">
+<div class="card tarj" style="width: 20rem;">
+  <img src="pictures/dog.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text text-primary"><?=$name?></p>
+    <p class="card-text"><?=$description?></p>
+
+  </div>
 
 </div>
+
+
 </body>
 </html>
