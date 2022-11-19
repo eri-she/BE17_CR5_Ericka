@@ -1,3 +1,21 @@
+<?php
+session_start();
+require_once '../components/db_connect.php';
+
+if (isset($_SESSION['user']) != "") {
+    header("Location: ../home.php");
+    exit;
+}
+
+if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
+    header("Location: ../login.php");
+    exit;
+}
+$res = mysqli_query($connect, "SELECT * FROM users WHERE id=" . $_SESSION['adm']);
+$row = mysqli_fetch_array($res, MYSQLI_ASSOC);
+
+mysqli_close($connect);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +54,10 @@
       </ul>
     </div>
     </nav>
+    <div class="bg-info text-center">
+<img class="rounded-circle"src="../pictures/<?=$row["picture"]?>" width="25px"alt=""> Welcome <?=$row["first_name"]?>! 
+ 
+</div>
     <fieldset>
         <legend class='h2'>Add a New furry Friend</legend>
         <form action="actions/a_create.php" method="post" enctype="multipart/form-data">

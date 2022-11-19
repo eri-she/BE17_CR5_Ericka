@@ -13,9 +13,31 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
     exit;
 }
 
-// select logged-in users details - procedural style
+// user logged in
 $res = mysqli_query($connect, "SELECT * FROM users WHERE id=" . $_SESSION['user']);
-$row = mysqli_fetch_array($res, MYSQLI_ASSOC);
+$user = mysqli_fetch_array($res, MYSQLI_ASSOC);
+// we look for all the users that are not adm.
+
+$sql = "SELECT * FROM animals";
+$result = mysqli_query($connect, $sql);
+
+$tbody = '';
+if (mysqli_num_rows($result) > 0) {
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+        $tbody .= "<div class='col'><div class='card' style='width: 18rem';>
+  <img src='pictures/" . $row['picture'] . "' class='card-img-top img-fluid'  >
+  <div class='card-body'>
+    <h5 class='card-title'>" . $row['name'] . "</h5>
+    <p class='card-text'>Breed: " . $row['breed'] . "</p>
+     <p class='card-text'>Breed: " . $row['age'] . " years.</p>
+    <a href='#' class='btn btn-primary'>More Details</a>
+  </div>
+</div>
+        </div>";
+    }
+} else {
+    $tbody = "<tr><td colspan='5'><center>No Data Available </center></td></tr>";
+}
 
 mysqli_close($connect);
 ?>
@@ -51,8 +73,14 @@ mysqli_close($connect);
    
 </nav>
 <div class="bg-warning text-center">
-<img class="round"src="pictures/<?=$row["picture"]?>" width="25px"alt=""> Welcome <?=$row["first_name"]?>! 
+<img class="rounded-circle"src="pictures/<?=$user["picture"]?>" width="25px"alt=""> Welcome <?=$user["first_name"]?>! 
  
+</div>
+<div class="container mt-5">
+    <div class="row">
+<?= $tbody?>
+    </div>
+
 </div>
 </body>
 </html>
