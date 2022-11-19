@@ -18,7 +18,7 @@ $res = mysqli_query($connect, "SELECT * FROM users WHERE id=" . $_SESSION['user'
 $user = mysqli_fetch_array($res, MYSQLI_ASSOC);
 // we look for all the users that are not adm.
 
-$sql = "SELECT * FROM animals";
+$sql = "SELECT * FROM animals WHERE age>=8";
 $result = mysqli_query($connect, $sql);
 
 $tbody = '';
@@ -75,8 +75,8 @@ mysqli_close($connect);
 <div class="bg-warning text-center">
 <img class="rounded-circle"src="pictures/<?=$user["picture"]?>" width="25px"alt=""> Welcome <?=$user["first_name"]?>! 
 </div>
-<h1 class="text-center mt-4 text-info">These are all our Dogs</h1>
-<a href="senior.php" class="m-4">See only our Senior Dogs >></a>
+<h1 class="text-center mt-4 text-success">These are our Senior Dogs</h1>
+<a href="home.php" class="m-4">Back <<</a>
 <div class="container mt-5">
     <div class=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 <?= $tbody?>

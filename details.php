@@ -85,7 +85,7 @@ $user = mysqli_fetch_array($res, MYSQLI_ASSOC);
   </div>
 
 </div>
-
+<a href="home.php"><h4>Back <<</h4></a>
 
 </body>
 </html>
