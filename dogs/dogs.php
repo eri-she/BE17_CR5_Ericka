@@ -26,7 +26,7 @@ if (mysqli_num_rows($result) > 0) {
             <td>" . $row['name'] .  "</td>
            
             <td>" . $row['breed'] . "</td>
-            <td>
+            <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
             <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
          </tr>";
        
